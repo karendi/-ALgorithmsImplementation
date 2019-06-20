@@ -85,4 +85,83 @@ const LinkedList = class {
         }
     }
 
+    removeFrom(index) {
+        let current,previous,iterate = 0;
+        current =  this.head;
+
+        // check if the index can be used
+
+        if(index > 0 && index > this.size){
+            return -1;
+        } else {
+            // check if the node is to be deleted
+            // from the beginning of the list
+            if(index === 0){
+                this.head = current.next;
+            } else {
+                while(iterate < index){
+                    previous = current;
+                    current =  current.next;
+                    iterate++
+                }
+
+                previous.next=current.next;
+            }
+            this.size --;
+        }
+    }
+
+
+    removeElement(element) {
+        let current = this.head;
+        let previous = null;
+
+        while(current !== null){
+            if(current.val === element){
+                // remove the first and only element
+                if(prev === null){
+                    this.head  = current.next;
+                } else
+                {
+                    prev.next = current.next;
+                }
+                this.size--;
+                return current.element;
+
+            }
+            previous = current;
+            current  =  current.next;
+        }
+        
+
+    }
+
+    //  Helper methods
+    indexOf(element) {
+        let count =0;
+        let current =  this.head;
+
+        while(current != null){
+            if(current.val ===  element){
+                return count;
+            }
+            count ++;
+            current = current.next;
+
+        }
+
+        return -1;
+    }
+
+    printList(){
+        let current = this.head;
+        let str = "";
+
+        while(current){
+            str += current.element  + "";
+            current = current.next;
+        }
+        console.log(str);
+    }
+
 }
